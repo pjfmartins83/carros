@@ -2,14 +2,11 @@ from django.shortcuts import render
 from cars.models import Car
 
 
-# fmt: off
 def cars_view(request):
-    # cars = Car.objects.all() #filtrar tudo
-    cars = Car.objects.filter(model__contains='Chevette')
+    cars = Car.objects.all().order_by("model")
+    search = request.GET.get("search")
 
-    return render(
-        request,
-        "cars.html",
-        {"cars": cars}
-    )
-# fmt: on
+    if search:
+        cars = cars.filter(model__icontains=search)
+
+    return render(request, "cars.html", {"cars": cars})
