@@ -3,7 +3,7 @@ from django.db import models
 
 class Brand(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name="Marca")
 
     class Meta:
         verbose_name = "Marca"
@@ -15,18 +15,28 @@ class Brand(models.Model):
 
 class Car(models.Model):
     id = models.AutoField(primary_key=True)
-    model = models.CharField("Modelo", max_length=200)
+    model = models.CharField(max_length=200, verbose_name="Modelo")
     brand = models.ForeignKey(
         Brand, on_delete=models.PROTECT, related_name="car_brand", verbose_name="Marca"
     )
-    factory_year = models.IntegerField("Ano de Fabricação", blank=True, null=True)
-    model_year = models.IntegerField("Ano do Modelo", blank=True, null=True)
-    plate = models.CharField("Placa", max_length=10, blank=True, null=True)
-    value = models.DecimalField(
-        "Valor (R$)", max_digits=12, decimal_places=2, blank=True, null=True
+    factory_year = models.IntegerField(
+        blank=True, null=True, verbose_name="Ano de Fabricação"
     )
-    photo = models.ImageField("Foto", upload_to="cars/", blank=True, null=True)
-    bio = models.TextField("Descrição", blank=True, null=True)
+    model_year = models.IntegerField(
+        blank=True, null=True, verbose_name="Ano do Modelo"
+    )
+    plate = models.CharField(max_length=10, blank=True, null=True, verbose_name="Placa")
+    value = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        verbose_name="Valor (R$)",
+    )
+    photo = models.ImageField(
+        upload_to="cars/", blank=True, null=True, verbose_name="Foto"
+    )
+    bio = models.TextField(blank=True, null=True, verbose_name="Descrição")
 
     class Meta:
         verbose_name = "Carro"
