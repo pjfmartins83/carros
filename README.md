@@ -112,7 +112,7 @@ git push origin minha-nova-feature
 
 </small>
 
-##### Obrigado por contribuir! 💙
+##### Obrigado por contribuir! 🤘
 
 <br>
 <br>
