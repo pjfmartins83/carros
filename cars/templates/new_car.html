@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+    <style>
+      .btn {
+        display: inline-block;
+        background-color: #0096c7;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        margin: 0 10px;
+      }
+
+      .btn:hover {
+        background-color: #108eb8;
+      }    
+  </style>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -8,6 +27,7 @@
             {{ form.as_table }}
         </table>
 
-        <input type="submit" value="Cadastrar" class="btn btn-primary"> 
+        <input type="submit" value="Cadastrar" class="btn btn-primary">
+        <a href="{% url 'cars_list' %}" class="btn btn-primary">Voltar</a>
     </form>
 {% endblock %}
